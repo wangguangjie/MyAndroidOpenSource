@@ -195,6 +195,8 @@ public class Application4Start extends Activity{
         super.onCreate(saveInstanceState);
         this.setContentView(R.layout.application4_start);
         //
+        //test
+
         initView();
         store_lists=new StoreInformation(getSharedPreferences("hit1",MODE_PRIVATE));
         store_lists.recoveryData();
