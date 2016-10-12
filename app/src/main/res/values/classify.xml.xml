@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="classifies">
+
+        <item>重要通知</item>
+
+        <item>学校新闻</item>
+
+        <item>工大要闻</item>
+
+        <item>媒体报道</item>
+
+        <item>热门专题</item>
+
+        <item>讲座论坛</item>
+    </string-array>
+</resources>
