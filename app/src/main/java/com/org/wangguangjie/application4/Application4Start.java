@@ -3,7 +3,6 @@ package com.org.wangguangjie.application4;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import com.org.wangguangjie.R;
 import com.org.wangguangjie.StoreInformation;
-import com.org.wangguangjie.application1.Application1Start;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

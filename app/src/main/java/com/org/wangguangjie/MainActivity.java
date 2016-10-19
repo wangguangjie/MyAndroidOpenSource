@@ -93,7 +93,7 @@ public class MainActivity extends Activity{
             }
             if(i==1)
             {
-                s="联系人";
+                s="计算器";
             }
             if(i==2)
             {
@@ -115,7 +115,7 @@ public class MainActivity extends Activity{
             }
             if(i==1)
             {
-                d="查看、编辑、拨号联系人等";
+                d="我的计算器";
             }
             if(i==2)
             {
@@ -137,7 +137,7 @@ public class MainActivity extends Activity{
                     images.add(R.mipmap.search_message);
                     break;
                 case 1:
-                    images.add(R.mipmap.application2_contacts);
+                    images.add(R.mipmap.caculate);
                     break;
                 case 2:
                     images.add(R.mipmap.news);

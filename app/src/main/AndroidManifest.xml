@@ -26,7 +26,7 @@
             android:theme="@style/mytheme2">
         </activity>
         <activity android:name=".application2.Application2Start"
-            android:theme="@style/mytheme2">
+            android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".application3.Application3Start"
             android:theme="@style/mytheme2">
