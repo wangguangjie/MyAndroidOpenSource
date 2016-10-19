@@ -18,5 +18,7 @@ public class Application5Start extends MainActivity {
     {
         super.onCreate(saveInstanceState);
         //tx=(TextView)findViewById(R.id.)
+        //test!;
+        tx=(TextView)findViewById(R.id.tx);
     }
 }
