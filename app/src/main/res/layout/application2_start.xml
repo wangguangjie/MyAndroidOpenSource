@@ -7,18 +7,22 @@
     android:orientation="vertical">
     <!--r1-->
     <EditText
+        android:id="@+id/display"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_column="0"
         android:layout_row="0"
         android:layout_columnSpan="4"
-        android:gravity="right"
-        android:text="0"
-        android:textSize="40dp"
-        android:editable="false"
+        android:gravity="right|top"
+        android:text="0.0"
+        android:paddingRight="10dp"
+        android:textSize="35sp"
+        android:textColor="@color/background_black"
+        android:background="@color/background_white"
         />
     <!--r2-->
     <Button
+        android:id="@+id/bt_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -33,6 +37,7 @@
         android:text="C"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_sin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -47,6 +52,7 @@
         android:text="sin"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -61,13 +67,14 @@
         android:text="n!"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
         android:layout_row="1"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:background="@color/c1"
+        android:background="#ffffcc"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
@@ -76,6 +83,7 @@
         android:textSize="40sp"/>
     <!--r3-->
     <Button
+        android:id="@+id/bt_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -90,6 +98,7 @@
         android:text="log"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_tan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -104,6 +113,7 @@
         android:text="tan"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_cos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -118,6 +128,7 @@
         android:text="cos"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
@@ -133,6 +144,7 @@
         android:textSize="40sp"/>
     <!--r4-->
     <Button
+        android:id="@+id/bt_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -147,6 +159,7 @@
         android:text="1"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -161,6 +174,7 @@
         android:text="2"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -175,6 +189,7 @@
         android:text="3"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_sub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
@@ -191,6 +206,7 @@
 
     <!--r5-->
     <Button
+        android:id="@+id/bt_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -205,6 +221,7 @@
         android:text="4"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -219,6 +236,7 @@
         android:text="5"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -233,6 +251,7 @@
         android:text="6"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_mul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
@@ -249,6 +268,7 @@
 
     <!--r6-->
     <Button
+        android:id="@+id/bt_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
@@ -263,6 +283,7 @@
         android:text="7"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -277,6 +298,7 @@
         android:text="8"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
@@ -292,6 +314,7 @@
         android:textSize="40sp"/>
 
     <Button
+        android:id="@+id/bt_div"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
@@ -308,13 +331,14 @@
 
     <!--r7-->
     <Button
+        android:id="@+id/bt_dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_row="6"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:background="@color/c1"
+        android:background="#99ccff"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
@@ -322,6 +346,7 @@
         android:text="."
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
@@ -336,13 +361,14 @@
         android:text="0"
         android:textSize="40sp"/>
     <Button
+        android:id="@+id/bt_equ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="2"
         android:layout_row="6"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:background="#9999cc"
+        android:background="@color/c1"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"

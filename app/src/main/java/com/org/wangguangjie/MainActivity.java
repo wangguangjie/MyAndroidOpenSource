@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.org.wangguangjie.application1.Application1Start;
@@ -16,6 +17,9 @@ import com.org.wangguangjie.application1.BeforeStartApplication;
 import com.org.wangguangjie.application2.Application2Start;
 import com.org.wangguangjie.application3.Application3Start;
 import com.org.wangguangjie.application4.Application4Start;
+import com.org.wangguangjie.application5.Application5Start;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +39,7 @@ public class MainActivity extends Activity{
     private ArrayList<Map<String,Object>> list_item=new ArrayList<>();
 
     private ListView ls;
+
     @Override
     public void onCreate(Bundle saveInstanceState)
     {
@@ -43,7 +48,6 @@ public class MainActivity extends Activity{
         this.setContentView(R.layout.activity_main);
         //getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.activity_main_titile_1);
         initLists();
-
     }
     private void initLists()
     {
@@ -77,6 +81,10 @@ public class MainActivity extends Activity{
                         Intent intent4=new Intent(MainActivity.this, Application4Start.class);
                         startActivity(intent4);
                         break;
+                    case 4:
+                        Intent intent=new Intent(MainActivity.this, Application5Start.class);
+                        startActivity(intent);
+                        break;
                     default:break;
                 }
             }
@@ -97,11 +105,15 @@ public class MainActivity extends Activity{
             }
             if(i==2)
             {
-                s="我的新闻客户端";
+                s="我的应用";
             }
             if(i==3)
             {
                 s="哈工大通知";
+            }
+            if(i==4)
+            {
+                s="JNI";
             }
             name.add(s);
             //name[i]=s;
@@ -119,11 +131,15 @@ public class MainActivity extends Activity{
             }
             if(i==2)
             {
-                d="开发属于我的新闻客户端";
+                d="个人应用";
             }
             if(i==3)
             {
                 d="哈工大深圳官网消息";
+            }
+            if(i==4)
+            {
+                d="use of jni";
             }
             describe.add(d);
             //describe[i]=d;
@@ -140,7 +156,7 @@ public class MainActivity extends Activity{
                     images.add(R.mipmap.caculate);
                     break;
                 case 2:
-                    images.add(R.mipmap.news);
+                    images.add(R.mipmap.b3_icon);
                     break;
                 case 3:
                     images.add(R.mipmap.hit);

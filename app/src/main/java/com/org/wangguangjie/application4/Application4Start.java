@@ -13,11 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by wangguangjie on 16/9/26.
@@ -52,174 +55,186 @@ import java.util.Map;
  *                  4.定义菜单栏,进行个性化设置和功能扩展。
  */
 
-public class Application4Start extends Activity{
+public class Application4Start extends Activity {
     //列表信息;
-   // private ArrayList<NewItem> lists=new ArrayList<>();
+    // private ArrayList<NewItem> lists=new ArrayList<>();
     private StoreInformation store_lists;
     //pages;
-    private int pages=0;
+    private int pages = 0;
     //url;
-    private final String HIT1="http://www.hitsz.edu.cn/index/news/fid/138/cid/234.html";
-    private final String HIT2="http://www.hitsz.edu.cn/index/news/fid/138/cid/231.html";
-    private final String HIT3="http://www.hitsz.edu.cn/index/news/fid/138/cid/243.html";
-    private final String HIT4="http://www.hitsz.edu.cn/index/news/fid/138/cid/232.html";
-    private final String HIT5="http://www.hitsz.edu.cn/index/news/fid/138/cid/233.html";
-    private final String HIT6="http://www.hitsz.edu.cn/index/news/fid/138/cid/235.html";
+    private final String HIT1 = "http://www.hitsz.edu.cn/index.php?s=/index/news/fid/138/cid/234";
+    private final String HIT2 = "http://www.hitsz.edu.cn/index.php?s=/index/news/fid/138/cid/231";
+    private final String HIT3 = "http://www.hitsz.edu.cn/index/news/fid/138/cid/243.html";
+    private final String HIT4 = "http://www.hitsz.edu.cn/index.php?s=/index/news/fid/138/cid/232";
+    private final String HIT5 = "http://www.hitsz.edu.cn/index/news/fid/138/cid/233.html";
+    private final String HIT6 = "http://www.hitsz.edu.cn/index.php?s=/index/news/fid/138/cid/235";
 
+    private String url1 = HIT1 + "/p/";
+    private String url2 = HIT2 + "/p";
+    private String url3 = HIT3 + "/p/";
+    private String url4 = HIT4 + "/p/";
+    private String url5 = HIT5 + "/p/";
+    private String url6 = HIT6 + "/p/";
     //
-    private String url1=HIT1+"?p=";
-    private String url2=HIT2+"?p=";
-    private String url3=HIT3+"?p=";
-    private String url4=HIT4+"?p=";
-    private String url5=HIT5+"?p=";
-    private String url6=HIT6+"?p=";
-    //
-    private String url=url1;
+    private String url = url1;
     private String page_url;
     //页码数;初始页码为1;
-    private int  page_number=1;
+    private int page_number = 1;
     //
-    final private String HIT="http://www.hitsz.edu.cn";
+    final private String HIT = "http://www.hitsz.edu.cn";
     //
     private PullListView listView;
     //
     private InformationAdapter adapter;
     //
-    //private Boolean hasMore=false;
+    private boolean first = true;
     //
-    private TextView tv;
-    //
-    private String message="";
-    //
-    private boolean first=true;
-    //
-    private SharedPreferences sharedPreferences;
     int select;
     //主线程执行信息显示,如果出现异常情况通知用户;
     SpinnerAdapter spinnerAdapter;
     ActionBar.OnNavigationListener navigationListener;
     ActionBar actionBar;
-    private String[] classify={"重要通知","讲座会议","热门专题"};
-    private Handler handler=new Handler()
-    {
+    private Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg)
-        {
+        public void handleMessage(Message msg) {
             //更改解析出信息,更新界面;
-            if(msg.what==0x123)
-            {
+            if (msg.what == 0x123) {
                 showInfo();
                 //缓存数据;
                 store_lists.storeData();
             }
             //通过actionbar的选择进行解析数据
-            else if(msg.what==0x124)
-            {
-                first=true;
-                page_number=1;
-                page_url=url+page_number++;
+            else if (msg.what == 0x124) {
+                first = true;
+                page_number = 1;
+                page_url = url + page_number++;
                 new Thread(new getThread()).start();
             }
             //如果无更多页面不许进行加载更多;
-            else if(msg.what==0x125)
-            {
-                Toast.makeText(Application4Start.this,"无更多信息!",Toast.LENGTH_LONG).show();
+            else if (msg.what == 0x125) {
+                Toast.makeText(Application4Start.this, "无更多信息!", Toast.LENGTH_LONG).show();
                 listView.getMoreComplete();
-            }
-            else if(msg.what==0x126){
+            } else if (msg.what == 0x126) {
                 adapter = new InformationAdapter(Application4Start.this, store_lists.getLists());
                 listView.setAdapter(adapter);
                 listView.deferNotifyDataSetChanged();
             }
             //处理异常信息;
-            else if(msg.what==0x111)
-            {
-                Toast.makeText(Application4Start.this,"无法获取信息",Toast.LENGTH_LONG).show();
+            else if (msg.what == 0x111) {
+                Toast.makeText(Application4Start.this, "无法获取信息", Toast.LENGTH_LONG).show();
             }
             //获取信息失败;
-            else if(msg.what==0x222)
-            {
-                Toast.makeText(Application4Start.this,"信息获取失败,请重新尝试!",Toast.LENGTH_LONG).show();
+            else if (msg.what == 0x222) {
+                Toast.makeText(Application4Start.this, "信息获取失败,请重新尝试!", Toast.LENGTH_LONG).show();
             }
             //无法连接网络;
-            else if(msg.what==0x333)
-            {
-                Toast.makeText(Application4Start.this,"无法连接网络,请重新尝试!",Toast.LENGTH_LONG).show();
+            else if (msg.what == 0x333) {
+                Toast.makeText(Application4Start.this, "无法连接网络,请重新尝试!", Toast.LENGTH_LONG).show();
             }
         }
     };
+
     //子线程执行网络信息的获取任务;
-    class getThread implements Runnable
-    {
+    class getThread implements Runnable {
 
         @Override
         public void run() {
             getMessage();
         }
     }
-    class WastTime implements Runnable
-    {
+
+    class WastTime implements Runnable {
 
         @Override
         public void run() {
-            try
-            {
+            try {
                 Thread.sleep(2000);
-                Message message=new Message();
-                message.what=0x125;
+                Message message = new Message();
+                message.what = 0x125;
                 handler.sendMessage(message);
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
         }
     }
 
     //刚启动程序时,为防止用户长时间的等待,次线程加载缓存数据;
-    class RecoveryThread implements Runnable
-    {
+    class RecoveryThread implements Runnable {
 
         @Override
         public void run() {
-            Message msg=new Message();
-            msg.what=0x126;
+            Message msg = new Message();
+            msg.what = 0x126;
             handler.sendMessage(msg);
         }
     }
+
     @Override
-    public void onCreate(Bundle saveInstanceState)
-    {
+    public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         this.setContentView(R.layout.application4_start);
-        //
-        //test
+        Log.d("mylog3", "oncreate");
+        //初始化组件;
         initView();
-        store_lists=new StoreInformation(getSharedPreferences("hit1",MODE_PRIVATE));
+        store_lists = new StoreInformation(getSharedPreferences("hit1", MODE_PRIVATE));
         store_lists.recoveryData();
 
-        if(store_lists.getLists().size()>0)
-        {
-            Toast.makeText(this,"lists:"+store_lists.getLists().size(),Toast.LENGTH_LONG).show();
+        if (store_lists.getLists().size() > 0) {
+            Log.d("mylogcat3", "3");
+            Toast.makeText(this, "lists:" + store_lists.getLists().size(), Toast.LENGTH_SHORT).show();
             new Thread(new RecoveryThread()).start();
-            try{
+            try {
                 Thread.sleep(100);
-            }catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
         }
-
-
         new Thread(new getThread()).start();
         //SharedPreferences p=get
     }
 
+    //onStart;
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("mylog1", "onStart");
+    }
+
+    //onResume;
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("mylog2", "onResume");
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Log.d("mylog4", "onRestart");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("mylog5", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("log6", "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("log7", "onDestroy");
+    }
+
     //设置菜单;
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.application4_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.application4_menu, menu);
         /*
         getMenuInflater().inflate(R.menu.application4_menu, menu);
 
@@ -242,12 +257,11 @@ public class Application4Start extends Activity{
 
         return super.onCreateOptionsMenu(menu);
     }
+
     //菜单操作响应;
     @Override
-    public boolean onOptionsItemSelected(MenuItem menu)
-    {
-        switch (menu.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem menu) {
+        switch (menu.getItemId()) {
             case R.id.item_search:
                 //业务代码;
                 break;
@@ -256,6 +270,26 @@ public class Application4Start extends Activity{
         }
         return super.onOptionsItemSelected(menu);
     }
+
+    public void test1()
+    {
+        initView();
+        test();
+        Button bt1=new Button(this);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+    public static void test()
+    {
+        final int a=1;
+        Object o;
+    }
+    static int a=1;
     //初始化界面;
     private void initView()
     {
@@ -436,13 +470,17 @@ public class Application4Start extends Activity{
     //本程序采用这种方法解析html;
     public void  analyHtml()
     {
-       try {
-           Connection connect = Jsoup.connect(page_url).timeout(3000);
+
+           Connection connect = Jsoup.connect(page_url);
            //伪装成浏览器对url进行访问,防止无法获取某些网站的document;
            connect.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+        try
+        {
            Document doc = connect.get();
+
            //解析出body 标签下的div标签;
            Elements elements = doc.select("body div");
+            Log.d("mylogcat2","2");
            //上拉刷新或者第一次刷新,清除数据;
            if(first)
                store_lists.clear();
@@ -496,7 +534,7 @@ public class Application4Start extends Activity{
                       for (Element el_p : els_p) {
                           if (el_p.text().equals("尾页")) {
                               String s = el_p.attr("href").toString();
-                              pages = Integer.parseInt(s.substring(s.indexOf("=") + 1, s.length()));
+                              pages = Integer.parseInt(s.substring(s.length()-1, s.length()));
                               break;
                           }
                       }
@@ -506,8 +544,9 @@ public class Application4Start extends Activity{
                }
            }
        }
-       catch (IOException ie)
+       catch (Exception ie)
        {
+           Log.d("mylogcat0",ie.toString());
            //无法获取document时候提醒用户;
            Message message=new Message();
            message.what=0x222;
@@ -516,7 +555,7 @@ public class Application4Start extends Activity{
        }
     }
     //先获取页码源码再进行解析;
-    //本程序没有才有这种方法;
+    //本程序没有采用这种方法;
     public String getDataByGet(String url){
         String content ="";
         HttpClient httpClient = new DefaultHttpClient();
@@ -545,6 +584,7 @@ public class Application4Start extends Activity{
             }
         }catch (IOException e)
         {
+            Log.d("mylogcat1",e.toString());
             Message msg=new Message();
             msg.what=0x111;
             handler.sendMessage(msg);
@@ -561,10 +601,7 @@ public class Application4Start extends Activity{
         if(connectmanger!=null)
         {
             NetworkInfo ninfo=connectmanger.getActiveNetworkInfo();
-            if(ninfo!=null&&ninfo.isConnected())
-                return true;
-            else
-                return false;
+            return ninfo != null && ninfo.isConnected();
         }
         else{
             return false;

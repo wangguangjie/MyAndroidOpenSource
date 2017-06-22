@@ -24,13 +24,13 @@
         <item name="android:windowBackground">@color/background_white</item>
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:titleTextColor">@color/background_white</item>
+        <item name="android:titleTextColor">@color/background_red</item>
     </style>
 
 
 
 
-    <style name="mytheme1" parent="android:Theme.NoTitleBar.Fullscreen">
+    <style name="mytheme1" parent="android:Theme.NoTitleBar">
         <item name="android:windowBackground">@color/background_black</item>
     </style>
 </resources>

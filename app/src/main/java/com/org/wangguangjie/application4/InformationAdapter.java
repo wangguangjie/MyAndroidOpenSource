@@ -27,7 +27,7 @@ public class InformationAdapter extends BaseAdapter {
     public InformationAdapter(Context context,ArrayList<NewItem> ls)
     {
         this.lists=ls;
-        layoutInflater=layoutInflater.from(context);
+        layoutInflater= LayoutInflater.from(context);
     }
     @Override
     public int getCount() {

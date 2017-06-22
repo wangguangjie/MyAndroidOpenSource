@@ -179,10 +179,7 @@ public class Application1Start extends Activity{
         if(connectmanger!=null)
         {
             NetworkInfo ninfo=connectmanger.getActiveNetworkInfo();
-            if(ninfo!=null&&ninfo.isConnected())
-              return true;
-            else
-                return false;
+            return ninfo != null && ninfo.isConnected();
         }
         else{
             return false;

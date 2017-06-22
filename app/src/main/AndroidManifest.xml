@@ -26,13 +26,12 @@
             android:theme="@style/mytheme2">
         </activity>
         <activity android:name=".application2.Application2Start"
-            android:theme="@style/AppTheme">
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".application3.Application3Start"
-            android:theme="@style/mytheme2">
-        </activity>
-        <activity android:name=".application3.WebInfoimation"
-            android:theme="@style/AppTheme">
+            android:theme="@style/mytheme">
         </activity>
         <activity android:name=".application4.Application4Start"
             android:theme="@style/mytheme">
@@ -46,6 +45,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".application5.Application5Start"
+            android:theme="@style/mytheme"/>
     </application>
 
 </manifest>

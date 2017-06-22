@@ -42,7 +42,7 @@ public class BeforeStartApplication extends Activity{
             }
         };
         //五秒之后进入应用;
-        handler.postDelayed(task,100);
+        handler.postDelayed(task,700);
     }
 
 }

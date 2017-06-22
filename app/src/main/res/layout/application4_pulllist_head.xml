@@ -17,7 +17,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/pull_list_view_progressbar_bg" />
+                android:src="@mipmap/progressbar1_bk" />
 
             <ProgressBar
                 android:id="@+id/pb_head_refreshing"
@@ -26,7 +26,7 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:indeterminateDrawable="@drawable/pull_list_view_progressbar"
+                android:indeterminateDrawable="@drawable/progressbar1"
                 android:indeterminateDuration="1000"
                 android:visibility="gone" />
         </RelativeLayout>

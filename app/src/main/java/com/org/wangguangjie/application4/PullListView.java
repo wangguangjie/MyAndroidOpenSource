@@ -1,5 +1,6 @@
 package com.org.wangguangjie.application4;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -70,14 +71,14 @@ public class PullListView extends ListView {
      * 下拉刷新接口
      */
     public interface OnRefreshListener {
-        public void onRefresh();
+        void onRefresh();
     }
 
     /**
      * 加载更多接口
      */
     public interface OnGetMoreListener {
-        public void onGetMore();
+        void onGetMore();
     }
 
     private static final String TAG = PullListView.class.getSimpleName();
@@ -394,7 +395,7 @@ public class PullListView extends ListView {
                 headView.setPadding(0, -1 * headViewHeight, 0, 0);
                 pbHeadRefreshing.setVisibility(View.GONE);
                 ivHeadArrow.clearAnimation();
-                ivHeadArrow.setImageResource(R.drawable.pull_list_view_progressbar_bg);
+                ivHeadArrow.setImageResource(R.mipmap.progressbar1_bk);
                 tvHeadTitle.setText("下拉刷新");
                 break;
 
@@ -529,10 +530,7 @@ public class PullListView extends ListView {
         if (getLastVisiblePosition() != getAdapter().getCount() - 1) {
             return false;
         }
-        if (reachLastPositionCount != 1) {
-            return false;
-        }
-        return true;
+        return reachLastPositionCount == 1;
     }
 
     /**
@@ -556,10 +554,7 @@ public class PullListView extends ListView {
         if (isGetMoreing) {
             return false;
         }
-        if (!hasMoreDataFlag) {
-            return false;
-        }
-        return true;
+        return hasMoreDataFlag;
     }
 
     /**
