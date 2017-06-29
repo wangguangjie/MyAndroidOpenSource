@@ -1,0 +1,3 @@
+/Users/wangguangjie/AndroidStudioProjects/Study1/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/edit_cache.dir
+/Users/wangguangjie/AndroidStudioProjects/Study1/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/rebuild_cache.dir
+/Users/wangguangjie/AndroidStudioProjects/Study1/app/.externalNativeBuild/cmake/debug/armeabi/CMakeFiles/my-native-lib.dir

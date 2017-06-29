@@ -44,6 +44,9 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".application3.CrimeDetailActivity"
+                  android:theme="@style/mytheme">
+        </activity>
 
         <activity android:name=".application5.Application5Start"
             android:theme="@style/mytheme"/>

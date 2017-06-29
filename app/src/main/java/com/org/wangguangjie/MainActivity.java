@@ -105,7 +105,7 @@ public class MainActivity extends Activity{
             }
             if(i==2)
             {
-                s="我的应用";
+                s="生活记录器";
             }
             if(i==3)
             {
