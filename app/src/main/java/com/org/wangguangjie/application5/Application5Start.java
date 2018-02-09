@@ -3,7 +3,9 @@ package com.org.wangguangjie.application5;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.org.wangguangjie.R;
 
@@ -19,9 +21,14 @@ public class Application5Start extends Activity {
     public void onCreate(Bundle saveInstanceState)
     {
         super.onCreate(saveInstanceState);
-        //tx=(TextView)findViewById(R.id.)
-        //test!;
         setContentView(R.layout.application5_start);
+        tx=(TextView)findViewById(R.id.text);
+        tx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(this,"hello",123);
+            }
+        });
     }
 
 }
